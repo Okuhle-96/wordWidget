@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,34 +9,39 @@
     <link rel="stylesheet" href="./css/grid.css">
     <title>Words Widget</title>
 </head>
+
 <body class="container">
     <section class="center">
         <h1 class="header">WORDS WIDGET</h1>
     </section>
     <section class="center">
-        <p class="tag col-7-sm center">Please enter your words in order to see if they will be marked. To show the only marked words press the checkbbox below.</p>
-        <div class="flex right"><label>Counter : </label><span class="counter"></span></div><br>
+        <p class="tag col-7-sm center">Please enter your words in order to see if they will be marked. To show the only
+            marked words press the checkbbox below.</p>
+        <div class="right col-10-sm orange"><label>Counter : </label><span class="counter"></span></div><br>
         <input type="text" class="sentence" placeholder="Enter Your Words Here">
         <input type="button" class="sbmSentence" value="Submit Sentence"><br>
 
         <p class="words center"></p>
 
-       <div class="flex center">
-        <label>Hide Shorter Words </label><input type="checkbox" name="checkbox" class="checkbox" id="checkbox">
-        <label>Check Longer Word</label><input type="checkbox" name="checkboxs" class="checkboxs" id="checkboxs">
-    </div>
+        <div class="flex col-9-sm">
+            <label class="red cred">Hide Unmarked Words </label><input type="checkbox" name="checkbox" class="checkbox"
+                id="checkbox">
+            <label class="green cgreen">Check Longer Word</label><input type="checkbox" name="checkboxs"
+                class="checkboxs" id="checkboxs">
+        </div>
 
-    </section> 
+    </section>
 
-    <section class="center col-7-sm lastFive">
+    <!-- <section class="center col-7-sm lastFive">
         <div ><h3>last five sentences</h3>
         <span class="displaySenteces justify">
 
 
         </span>
         </div>
-    </section>
+    </section> -->
 </body>
 <script src="./js/factoryFunction.js"></script>
 <script src="./js/index.js"></script>
+
 </html>
