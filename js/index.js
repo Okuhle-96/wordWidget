@@ -3,29 +3,48 @@ const textInput = document.querySelector(".sentence");
 const wordsOutput = document.querySelector(".words");
 
 const counter = document.querySelector(".counter");
+const displaySentences = document.querySelector(".displaySenteces");
 
 const submitBtn = document.querySelector(".sbmSentence");
 const checkWords = document.querySelector('.checkbox');
 const checkLongestWord = document.querySelector('.checkboxs');
 
+const sentences = [];
+let lastFiveSentences = [];
 
 // CONNECT DOM WITH FACTORY FUNCTION
 let wordsWidgetInstance = wordsWidgetFactory();
 
+// GET SENTENCES FROM THE LOCAL STORAGE
+if (localStorage["lastFive"]) {
+    lastFiveSentences = JSON.parse(localStorage.getItem("lastFive"));
+    }
+console.log(lastFiveSentences)
+   
+
 // MARK LONGER WORDS
 const markLongerWords = () => {
-
     const words = textInput.value;
     const word = words.split(" ");
 
     let count = 0;
     let wordsWidget = "";
 
+    // localStorage.setItem("lastFive", JSON.stringify(sentences));  
+
+    // if(words !== undefined && !sentences.includes(words)){
+    //     sentences.push(words);
+    //     displaySentences.innerHTML = lastFiveSentences;
+    // }else if (words == "") {
+    //     alert("nothing to add");
+    // }
+    // displaySentences.innerHTML = lastFiveSentences;
+    
     for (let i = 0; i < word.length; i++) {
         const wordelement = word[i];
-
         if (wordelement.length > 4) {
             wordsWidget += `<mark style="padding: 10px; background-color: goldenrod; color: white;">${wordelement}</mark> `
+            
         } else {
             wordsWidget += wordelement + " ";
         }
@@ -33,8 +52,11 @@ const markLongerWords = () => {
             count++
         }
         wordsOutput.innerHTML = wordsWidget;
+        
+
     }
     counter.innerHTML = count;
+   
 }
 submitBtn.addEventListener('click', markLongerWords)
 
@@ -45,22 +67,22 @@ const hideUmarkedWords = () => {
 
     let checkLongerWord = "";
 
-
     for (let i = 0; i < word.length; i++) {
         const wordelement = word[i];
 
-        if ((checkbox.checked == true) && (wordelement.length > 4)) {
+        if ((checkWords.checked == true) && (wordelement.length > 4)) {
             checkLongerWord += `<mark style="padding: 10px; background-color: darkred; color: white;">${wordelement}</mark>` + " ";
+        }
+         else {
+            checkLongerWord += wordelement + " ";
         }
         wordsOutput.innerHTML = checkLongerWord
     }
-
 }
-checkWords.addEventListener('change', hideUmarkedWords)
+// checkWords.addEventListener('change', hideUmarkedWords)
 
 // GET THE LONGEST WORD
 const getTheLongestWord = () => {
-
     const words = textInput.value;
     const word = words.split(" ");
 
@@ -68,23 +90,26 @@ const getTheLongestWord = () => {
     let anotherWord = "";
 
     for (let i = 0; i < word.length; i++) {
-        if (word[i].length >= longestWord.length) {
+        if ((checkLongestWord.checked == true) && (word[i].length >= longestWord.length)) {
             longestWord = word[i]
         }
     }
 
     for (let i = 0; i < word.length; i++) {
         let wordIndex = word[i];
-        if (wordIndex.length === longestWord.length) {
+        if ((checkboxs.checked == true) && (wordIndex.length === longestWord.length)) {
+            anotherWord += `<mark style="padding: 10px; background-color: darkgreen; color: white;">${wordIndex}</mark>` + " ";
+        } else {
             anotherWord += wordIndex + " ";
-
         }
-        wordsOutput.innerHTML = `<mark style="background-color: darkgreen; padding: 10px; font-family: monospace; margin: 10px; color: white;">${anotherWord}</mark>` + " ";
+        wordsOutput.innerHTML = anotherWord;
     }
 }
-checkLongestWord.addEventListener('change', getTheLongestWord)
+// checkLongestWord.addEventListener('change', getTheLongestWord)
 
 // KEEP TRACK OF LAST 5 SENTENCES
 const keepTrackOfLastFiveSentences = () => {
+
+    
 
 }
